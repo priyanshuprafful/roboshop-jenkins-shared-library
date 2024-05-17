@@ -7,13 +7,7 @@ def call() {
             stage('Compile/Build') {
                 steps {
                     script {
-                        if(app_language == 'nodejs'){
-                            sh 'npm install'
-                        }
-                        if(app_language == 'maven'){
-                            sh 'mvn package'
-
-                    }
+                        common.compile()
                 }
 
 
@@ -22,7 +16,9 @@ def call() {
             }
             stage('Test Cases'){
                 steps {
-                    echo "Test Cases"
+                   script {
+                       common.testcases()
+                   }
                 }
             }
 
