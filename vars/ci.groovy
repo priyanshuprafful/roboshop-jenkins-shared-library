@@ -1,19 +1,21 @@
-pipeline {
-    agent any
+def call() {
+    pipeline {
+        agent any
 
-    stages {
+        stages {
 
-        stage('Compile/Build') {
-            steps {
-                echo "Compile/Build"
+            stage('Compile/Build') {
+                steps {
+                    echo "Compile/Build"
+                }
+
+            }
+            stage('Test Cases'){
+                steps {
+                    echo "Test Cases"
+                }
             }
 
         }
-        stage('Test Cases'){
-            steps {
-                echo "Test Cases"
-            }
-        }
-
     }
 }
