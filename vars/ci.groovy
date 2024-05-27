@@ -9,6 +9,7 @@ def call() {
 
             stage('Compile/Build') {
                 steps {
+                    mail bcc: '', body: 'AWS verified Jenkins  ', cc: '', from: 'priyanshugupta0803@gmail.com', replyTo: '', subject: 'Test Jenkins ', to: 'priyanshugupta0803@gmail.com'
                     script {
                         common.compile()
                 }
