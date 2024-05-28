@@ -9,7 +9,8 @@ def call() {
 
             stage('Compile/Build') {
                 steps {
-                    mail bcc: '', body: 'AWS verified Jenkins  ', cc: '', from: 'priyanshugupta0803@gmail.com', replyTo: '', subject: 'Test Jenkins ', to: 'priyanshugupta0803@gmail.com'
+                    sh 'env'
+
                     script {
                         common.compile()
                 }
@@ -32,6 +33,12 @@ def call() {
                         common.codequality()
                     }
                 }
+            }
+        }
+
+        post {
+            failure {
+                mail bcc: '', body: '${component} - Pipeline Failed \n ${BUILD_URL} ', cc: '', from: 'priyanshugupta0803@gmail.com', replyTo: '', subject: '${component} - Pipeline Failed ', to: 'priyanshugupta0803@gmail.com'
             }
         }
     }
