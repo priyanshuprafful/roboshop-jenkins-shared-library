@@ -9,8 +9,8 @@ def call() {
 
             stage('Compile/Build') {
                 steps {
-                    sh 'env'
-
+                    sh 'env' // will give all the env details maybe
+                    sh 'exit 1'
                     script {
                         common.compile()
                 }
