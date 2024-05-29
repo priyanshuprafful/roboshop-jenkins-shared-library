@@ -12,17 +12,15 @@ def call() {
                   //  sh 'env' // will give all the env details maybe
                     //sh 'exit 1'
                     script {
-                        withAWSParameterStore(credentialsId: 'PARAMETER1' , naming: 'absolute', path: '/sonarqube', recursive: true, regionName: 'us-east-1') {
-                            sh 'env'
-                            sh 'exit 1'
-                        }
                         common.compile()
+                        }
+
                 }
 
 
                 }
 
-            }
+            
             stage('Test Cases'){
                 steps {
                    script {
