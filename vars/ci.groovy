@@ -20,7 +20,7 @@ def call() {
 
                 }
 
-            
+
             stage('Test Cases'){
                 steps {
                    script {
