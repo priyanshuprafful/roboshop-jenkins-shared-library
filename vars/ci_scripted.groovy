@@ -6,6 +6,15 @@ def call() {
 
 
         try {
+
+            stage('Check Out Code') {
+                sh 'ls -l'
+                cleanWs()
+                sh 'ls -l'
+                git branch: 'main' , url: 'https://github.com/priyanshuprafful/cart'
+                sh 'ls -l'
+
+            }
             stage('Compile/Build') {
                 sh 'env'
                 common.compile()
