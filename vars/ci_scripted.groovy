@@ -46,6 +46,18 @@ def call() {
 
             }
 
+            if (env.GTAG == "true") {
+                stage('Package') {
+                    common.codequality()
+
+                }
+                stage('Artifact Upload') {
+                    common.codequality()
+
+                }
+
+            }
+
         } catch (e) {
             mail bcc: '', body: "${component} - Pipeline Failed \n ${BUILD_URL} ", cc: '', from: 'priyanshugupta0803@gmail.com', replyTo: '', subject: "${component} - Pipeline Failed", to: 'priyanshugupta0803@gmail.com', mimeType: 'text/html'
 
