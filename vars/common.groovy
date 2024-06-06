@@ -31,7 +31,7 @@ def prepareArtifacts() {
     sh 'echo ${TAG_NAME} >VERSION'
 
     if (app_lang == "node_js" || app_lang == "angular") {
-        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile' // since we are giving * version will get automatically added 
+        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile' // since we are giving * version will get automatically added
     }
 
 
