@@ -30,12 +30,14 @@ def codequality() {
 def prepareArtifacts() {
     sh 'echo ${TAG_NAME} >VERSION'
 
-   if (app_language == "node_js" || app_language == "angular") {
-        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile' // since we are giving * version will get automatically added
-    }
+   //if (app_language == "node_js" || app_language == "angular") {
+         // since we are giving * version will get automatically added
+//    }
 
     if (app_language == "maven") {
         sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar VERSION -x Jenkinsfile'
+    } else {
+        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
     }
 
 
