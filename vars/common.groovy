@@ -3,7 +3,7 @@ def compile() {
         sh 'npm install'
     }
     if(app_language == 'maven'){
-        sh 'mvn package'
+        sh 'mvn package ; mv target/${component}-1.0.jar {component}.jar'
 
     }
 }
@@ -30,9 +30,13 @@ def codequality() {
 def prepareArtifacts() {
     sh 'echo ${TAG_NAME} >VERSION'
 
-  //  if (app_language == "node_js" || app_language == "angular") {
+   if (app_language == "node_js" || app_language == "angular") {
         sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile' // since we are giving * version will get automatically added
-  //  }
+    }
+
+    if (app_language == "maven") {
+        sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar VERSION -x Jenkinsfile'
+    }
 
 
 }
