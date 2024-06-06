@@ -52,7 +52,7 @@ def call() {
 
                 }
                 stage('Artifact Upload') {
-                    common.codequality()
+                    common.testcases()
 
                 }
 
