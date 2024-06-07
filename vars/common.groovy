@@ -43,7 +43,8 @@ def prepareArtifacts() {
 
 }
 def artifactUpload () {
+    NEXUS_USER = sh ( script: "aws ssm get-parameter --name prod.nexus.user --with-decryption | jq .Parameter.Value | xargs" , returnStdout: true ).trim()
  //   if (app_language == "node_js" || app_language == "angular") {
-        sh 'curl -v -u admin:admin123 --upload-file ${component}-${TAG_NAME}.zip http://172.31.42.150:8081/repository/${component}/${component}-${TAG_NAME}.zip'
+        sh 'curl -v -u ${NEXUS_USER}:admin123 --upload-file ${component}-${TAG_NAME}.zip http://172.31.42.150:8081/repository/${component}/${component}-${TAG_NAME}.zip'
  // }
 }
