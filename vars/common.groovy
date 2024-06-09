@@ -3,7 +3,8 @@ def compile() {
         sh 'npm install'
     }
     if(app_language == 'maven'){
-        sh "mvn package ; mv target/${component}.jar {component}.jar"
+      //  sh "mvn package ; mv target/${component}-1.0.jar {component}.jar"
+        sh 'mvn package ; mv target/${component}-1.0.jar ${component}.jar'
 
     }
 }
@@ -35,7 +36,8 @@ def prepareArtifacts() {
 //    }
 
     if (app_language == "maven") {
-        sh "zip -r ${component}-${TAG_NAME}.zip ${component}.jar schema VERSION"
+      //  sh "zip -r ${component}-${TAG_NAME}.zip ${component}.jar schema VERSION"
+        sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar schema VERSION'
     } else {
         sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
     }
