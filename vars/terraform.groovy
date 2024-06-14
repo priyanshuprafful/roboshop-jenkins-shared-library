@@ -18,7 +18,7 @@ def call () {
                 }
             }
 
-            stage ('Apply') {
+            stage ('Apply Or Destroy') {
                 steps {
                     sh ''
                     sh 'terraform ${ACTION} -auto-approve -var-file=env-${ENV}/main.tfvars'
