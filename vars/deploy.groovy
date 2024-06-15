@@ -34,7 +34,7 @@ def call() {
                         wrap([$class: 'MaskPasswordsBuildWrapper',
                               varPasswordPairs: [[password: SSH_PASSWORD]]]) {
 
-                            sh 'aws ec2 describe-instances --filters "Name=tag:Name,Values=${component}-${environment}" --query "Reservations[*].Instances[*].PrivateIpAddress" --output text >/tmp/servers'
+                            sh 'aws ec2 describe-instances --filters "Name=tag:Name,Values=${component}-${environment}" --query "Reservations[*].Instances[*].PrivateIpAddress" --output text |xargs -n1 >/tmp/servers'
 
                             // /tmp/servers is like we are getting the inventory dynamically 
 
