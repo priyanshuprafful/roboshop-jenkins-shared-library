@@ -29,7 +29,7 @@ def call() {
             stage('Deploy Servers') {
                 steps {
                     script {
-                        sh 'aws autoscaling start-instance-refresh --auto-scaling-group-name ${component}-${environment}-auto scaling group --preferences \'{"InstanceWarmup": 180, "MinHealthyPercentage": 90}\''
+                        sh 'aws autoscaling start-instance-refresh --auto-scaling-group-name ${component}-${environment}-auto_scaling_group --preferences \'{"InstanceWarmup": 180, "MinHealthyPercentage": 90}\''
 
 
 
