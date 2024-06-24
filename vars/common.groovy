@@ -29,18 +29,19 @@ def codequality() {
 }
 
 def prepareArtifacts() {
-    sh 'echo ${TAG_NAME} >VERSION'
-
-   //if (app_language == "node_js" || app_language == "angular") {
-         // since we are giving * version will get automatically added
+//    sh 'echo ${TAG_NAME} >VERSION'
+//
+//   //if (app_language == "node_js" || app_language == "angular") {
+//         // since we are giving * version will get automatically added
+////    }
+//
+//    if (app_language == "maven") {
+//      //  sh "zip -r ${component}-${TAG_NAME}.zip ${component}.jar schema VERSION"
+//        sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar schema VERSION'
+//    } else {
+//        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
 //    }
-
-    if (app_language == "maven") {
-      //  sh "zip -r ${component}-${TAG_NAME}.zip ${component}.jar schema VERSION"
-        sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar schema VERSION'
-    } else {
-        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
-    }
+    docker build -t 529080510656.dkr.ecr.us-east-1.amazonaws.com/${component}:${TAG_NAME} .
 
 
 }
