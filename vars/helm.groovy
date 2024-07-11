@@ -7,9 +7,9 @@ def call() {
         }
 
         parameters {
-            string(name: 'app_version', defaultValue: '' , description: 'App_Version')
-            string(name: 'component', defaultValue: '' , description: 'Component')
-            string(name: 'environment', defaultValue: '' , description: 'Environment')
+            string(name: 'app_version', defaultValue: '', description: 'App_Version')
+            string(name: 'component', defaultValue: '', description: 'Component')
+            string(name: 'environment', defaultValue: '', description: 'Environment')
 
 
         }
@@ -27,24 +27,20 @@ def call() {
             }
 
 
-
             stage('Deploy Helm Charts') {
                 steps {
                     script {
-                        sh 'helm install ${component} . -f APP/helm/${environment}.yaml --set appversion=${app_version}'
+                        sh 'helm upgrade -i ${component} . -f APP/helm/${environment}.yaml --set appversion=${app_version}'
 
-
-
-                        }
 
                     }
 
-
-
                 }
-            }
 
+
+            }
         }
+
 
         post {
             always {
@@ -52,3 +48,4 @@ def call() {
             }
         }
     }
+}
