@@ -21,6 +21,11 @@ def call() {
                     dir('APP') {
                         git branch: 'main', url: "https://github.com/priyanshuprafful/${component}"
                     }
+                    dir('HELM'){
+                        git branch: 'main', url: "https://github.com/priyanshuprafful/roboshop-helm-chart"
+
+
+                    }
 
 
                 }
@@ -30,7 +35,7 @@ def call() {
             stage('Deploy Helm Charts') {
                 steps {
                     script {
-                        sh 'helm upgrade -i ${component} . -f APP/helm/${environment}.yaml --set appversion=${app_version}'
+                        sh 'helm upgrade -i ${component} HELM/ -f APP/helm/${environment}.yaml --set appversion=${app_version}'
 
 
                     }
